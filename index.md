@@ -107,3 +107,78 @@ print("Flag: ", flag)
 
 ***HZU18{sQL-!nj3ct3on---nice}***
 
+> ### Arithmetic expression
+> Мэддэг тооноос чинь арай өөр байх болно.
+> Холбоос: [https://math.u18.haruulzangi.mn/](https://math.u18.haruulzangi.mn/)
+
+Тухайн холбоосоор ороход дараах бодлого гарч ирнэ
+![image](https://user-images.githubusercontent.com/28390518/171204988-9ca273b4-8513-49a8-a724-5285706c1f9d.png)
+Гэхдээ **5 секунд** тутам тухайн бодлого солигдон шинэ бодлого гарч ирнэ. Тэгэхээр бидэнд гараар бодох ямар ч боломж байхгүй. Зөвхөн өөрсдөө *script* бичиж л **flag**-аа авах боломжтой.
+Сайн анзаарахад нийт 5н **md5**-аар *encrypt* хийгдсэн  тоо байх бөгөөд бидэнд хамгийн түрүүнд үүнийг *decrypt* хийх хэрэгтэй.
+Хамгийн эхлээд гараар аргаар 10 орчим тоог https://www.md5online.org/md5-decrypt.html дээр *decrypt* хийж үзэхэд бүгд 0-ээс 100 хүртэлх тоонууд байв. Тэгвэл зөвхөн 0-100 хооронд дурын тоо байна гэж үзээд тухайн бүх тоог **md5 encrypt** хийж array дотор хадгалья. 
+```python
+import  hashlib
+arr=[]
+for  i  in  range(0, 100):
+	hash = str(i)
+	result = hashlib.md5(hash.encode('utf-8'))
+	arr.append(result.hexdigest())
+```
+Үүний дараа тухайн *encrypt* хийгдсэн тоог энгийн тоо болгодог *function* бичье.
+```python
+def  find(num):
+	for  i  in  range(0, 100):
+		if(arr[i] == num):
+			return  i
+```
+Эцэст нь тухайн веб-н *source* кодоос тухайн тоонуудаа авч бодоод илгээдэг код бичье. Гэхдээ илгээхдээ хашаа Post request хийх ёстойгоо шалгах хэрэгтэй. Source code харвал:
+```html
+<form action="/sum" method="POST">
+	<!-- Бодлого -->
+	<input type="text" name="sum" >
+	<input type="submit" >
+</form>
+```
+https://math.u18.haruulzangi.mn/sum холбоос руу `{sum: Хариу}` хэлбэрээр илгээх ёстойг харж болно.
+```python
+from  bs4  import  BeautifulSoup
+import  requests
+import  hashlib
+arr=[]
+for  i  in  range(0, 100):
+	hash = str(i)
+	result = hashlib.md5(hash.encode('utf-8'))
+	arr.append(result.hexdigest())
+
+def  find(num):
+	for  i  in  range(0, 100):
+		if(arr[i] == num):
+			return  i
+
+def  calc(num1, num2, c):
+	if  c == "+":
+		return  num1 + num2
+	if  c == "-":
+		return  num1 - num2
+	if  c == "*":
+		return  num1 * num2
+	if  c == "/":
+		return  num1 / num2
+
+URL = "https://math.u18.haruulzangi.mn/"
+page = requests.get(URL)
+soup = BeautifulSoup(page.content, "html.parser")
+numbers = soup.find("form")
+txt = numbers.text.split()
+sum = calc(find(txt[6][1:]), find(txt[8][:-1]), txt[7])
+sum1 = calc(find(txt[0]), find(txt[2]), txt[1])
+sum2 = calc(sum1, find(txt[4]), txt[3])
+total = calc(sum2, sum, txt[5])
+url = 'https://math.u18.haruulzangi.mn/sum'
+mathResult = {'sum': total}
+res = requests.post(url, data = mathResult)
+print(res.text)
+```
+Дээрх *script* ажилуулахад **flag** гарч ирэх болно.
+
+***hz{u_r_so_good_at_math}***
