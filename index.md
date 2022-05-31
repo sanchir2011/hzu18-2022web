@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/sanchir2011/hzu18-2022web.github.io/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## HaruulZangi U18 2022 Web challenge Writeups (Round 1)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+> ### Cloud Engineer 
+> Монгол инженерууд заримдаа тохиргоогоо буруу хийх юм тэ? flag.txt файлыг олоорой.
+> Холбоос: [https://cloud-engineer.u18.haruulzangi.mn/](https://cloud-engineer.u18.haruulzangi.mn/)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Хэрэв тухайн холбоосоор орж үзвэл дараах үүлний зураг гарч ирэх болно.
+![Cloud Engineer](https://user-images.githubusercontent.com/28390518/171184847-64e7ac52-566c-48af-add9-8527b8f67fcc.png)
 
-```markdown
-Syntax highlighted code block
+Source code-г нь харж үзэхэд тухайн зураг нь [Google Cloud Storage](https://cloud.google.com/) дээр байрлаж байгаа нь харагдана.
+![Source code of Cloud Engineer](https://user-images.githubusercontent.com/28390518/171185340-96733de3-2222-430d-a4be-db5d2b3ec507.png)
 
-# Header 1
-## Header 2
-### Header 3
+Тухайн зурагны холбоосоор ороод **clouds.jpeg** хасаад ороход тухайн folder доторх файлууд **XML**-р харагдах болно.
+![Files in the folder](https://user-images.githubusercontent.com/28390518/171186606-e24f06d4-92d3-41b1-b85d-4e8d0c036a85.png)
 
-- Bulleted
-- List
+Тэгвэл ард нь **flag.txt** нэмээд ороод үзэхэд flag гарч ирэх болно 😊
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sanchir2011/hzu18-2022web.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+***HZU18{Cl00ud_St0r@g#_f3830d5c1b}***
